@@ -10,5 +10,21 @@ jobs:
         secondary_subscription_Id:  ${{vars.SECONDARY_MSSQL_SERVER_SUBSCRIPTION_ID}} 
         failover_group_name: ${{vars.FAILOVER_GROUP_NAME_1}} 
       secrets:
-        AZURE_CREDENTIALS_DELOITTE_SUB : ${{ secrets.AZURE_CREDENTIALS_DELOITTE }} 
+        AZURE_CREDENTIALS_DELOITTE_SUB : ${{secrets.AZURE_CREDENTIALS_DELOITTE}} 
         #GH_PAT: ${{ secrets.GH_PAT }}
+ 
+  StorageAccount-Failover:    
+      uses: SNawazmac/alpha_track_sql_failover/.github/workflows/storage_with_dns_failover.yml@main
+      with:
+        resource_group_name: ${{vars.STORAGEACCOUNT_RESOURCE_GROUP_NAME}}
+        storageaccount_names: ${{vars.STORAGEACCOUNT_NAMES}} 
+        sku:  ${{vars.STORAGE_SKU}}
+        primary_subscription_Id: ${{vars.PRIVATE_DNS_ZONE_SUBSCRIPTION_ID}}
+        secondary_subscription_Id: ${{vars.SECONDARY_PRIVATE_ENDPOINT_SUBSCRIPTION_ID}}
+        Private_DNS_Zone_resource_group_name: ${{vars.PRIVATE_DNS_ZONE_RESOURCE_GROUP_NAME}}
+        secondary_resource_group_name: ${{vars.SECONDARY_PRIVATE_ENDPOINT_RESOURCE_GROUP_NAME}}
+        secondary_private_endpoint_name: ${{vars.SECONDARY_PRIVATE_ENDPOINT_NAME}}
+        zone_name: ${{vars.PRIVATE_DNS_ZONE_NAME}}
+        Private_DNS_Zone_Group_name: ${{vars.PRIVATE_DNS_ZONE_GROUP_NAME}} 
+      secrets:
+        AZURE_CREDENTIALS_DELOITTE_SUB : ${{secrets.AZURE_CREDENTIALS_DELOITTE}}       
