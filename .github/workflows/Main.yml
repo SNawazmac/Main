@@ -1,0 +1,14 @@
+name: Main yaml
+on:
+  workflow_dispatch:
+jobs:
+  SQLServer1-Failover:    
+      uses: SNawazmac/alpha_track_sql_failover/.github/workflows/sql_failover.yml@main
+      with:
+        resource_group_name: ${{vars.SECONDARY_MSSQL_SERVER_RESOURCE_GROUP_NAME}} 
+        secondary_server_name: ${{vars.SECONDARY_MSSQL_SERVER_NAME_1}} 
+        secondary_subscription_Id:  ${{vars.SECONDARY_MSSQL_SERVER_SUBSCRIPTION_ID}} 
+        failover_group_name: ${{vars.FAILOVER_GROUP_NAME_1}} 
+      secrets:
+        AZURE_CREDENTIALS_DELOITTE_SUB : ${{ secrets.AZURE_CREDENTIALS_DELOITTE }} 
+        #GH_PAT: ${{ secrets.GH_PAT }}
