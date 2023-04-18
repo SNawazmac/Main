@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   SQLServer1-Failover:    
-      uses: SNawazmac/alpha_track_sql_failover/.github/workflows/sql_failover.yml@main
+      uses: SNawazmac/sql_failover/.github/workflows/sql_failover.yml@main
       with:
         resource_group_name: ${{vars.SECONDARY_MSSQL_SERVER_RESOURCE_GROUP_NAME}} 
         secondary_server_name: ${{vars.SECONDARY_MSSQL_SERVER_NAME_1}} 
@@ -14,7 +14,7 @@ jobs:
         #GH_PAT: ${{ secrets.GH_PAT }}
  
   StorageAccount-Failover:    
-      uses: SNawazmac/alpha_track_sql_failover/.github/workflows/storage_with_dns_failover.yml@main
+      uses: SNawazmac/storage_account_failover/.github/workflows/storage_with_dns_failover.yml@main
       with:
         resource_group_name: ${{vars.STORAGEACCOUNT_RESOURCE_GROUP_NAME}}
         storageaccount_names: ${{vars.STORAGEACCOUNT_NAMES}} 
@@ -30,7 +30,7 @@ jobs:
         AZURE_CREDENTIALS_DELOITTE_SUB : ${{secrets.AZURE_CREDENTIALS_DELOITTE}}
         
   Keyvault-DNS-Failover: 
-      uses: SNawazmac/alpha_track_key_vault_dns_failover/.github/workflows/key_vault_dns_failover.yml@main
+      uses: SNawazmac/key_vault_dns_failover/.github/workflows/key_vault_dns_failover.yml@main
       with:
         primary_subscription_Id: ${{vars.PRIVATE_DNS_ZONE_SUBSCRIPTION_ID}}
         secondary_subscription_Id: ${{vars.SECONDARY_PRIVATE_ENDPOINT_SUBSCRIPTION_ID}}
