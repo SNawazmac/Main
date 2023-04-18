@@ -1,4 +1,4 @@
-name: Main yaml
+name: Main yaml Failover
 on:
   workflow_dispatch:
 jobs:
@@ -11,7 +11,6 @@ jobs:
         failover_group_name: ${{vars.FAILOVER_GROUP_NAME_1}} 
       secrets:
         AZURE_CREDENTIALS_DELOITTE_SUB : ${{secrets.AZURE_CREDENTIALS_DELOITTE}} 
-        #GH_PAT: ${{ secrets.GH_PAT }}
  
   StorageAccount-Failover:    
       uses: SNawazmac/storage_account_failover/.github/workflows/storage_with_dns_failover.yml@main
